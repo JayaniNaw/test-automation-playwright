@@ -19,3 +19,22 @@ def test_doc_navigation(playwright_home:HomePage):
     
     #Check list first title text
     expect(document_page.getting_started).to_have_text('Getting Started')
+    
+    
+def test_get_started(playwright_home:HomePage):
+    document_page = DocumentPage(playwright_home.page)
+    if playwright_home.get_started_btn.is_visible() and playwright_home.get_started_btn.is_enabled():
+        print("Button is clickable")
+    else:
+        print("Button is not clickable")
+        
+    playwright_home.get_started_btn.click()
+        
+    # Check the navigation succeeded.
+    # Check page URL
+    expect(playwright_home.page).to_have_url(data.doc_url)
+            
+    #Check list first title text
+    expect(document_page.getting_started).to_have_text('Getting Started')
+    
+   
